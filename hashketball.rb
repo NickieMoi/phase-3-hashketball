@@ -127,3 +127,66 @@ def game_hash
 end
 
 # Write code here
+
+def get_players 
+  players = nil
+  players1 = game_hash[:home][:players]
+  players2 = game_hash[:away][:players]
+  players = players1 + players2
+  # players.length
+end
+# puts game_hash[:home]
+# puts get_players(game_hash, "away")
+# puts get_players game_hash
+
+def num_points_scored name
+  player = get_players.filter {|player| player[:player_name] == name}
+  player[0][:points]
+end
+
+def shoe_size name
+  player = get_players.filter {|player| player[:player_name] == name}
+  player[0][:shoe]
+end
+
+def player_stats name
+  player = get_players.filter {|player| player[:player_name] == name}
+  player[0]
+end
+
+def big_shoe_rebounds 
+  all_shoes = get_players.map {|player| player[:shoe]}
+  large = all_shoes.max()
+  player = get_players.filter {|player| player[:shoe] == large}
+  player[0][:rebounds]
+end
+
+# puts big_shoe_rebounds
+
+
+def team_colors name 
+  if name == "Brooklyn Nets"
+    return colors = game_hash[:home][:colors]
+  else 
+    return colors = game_hash[:away][:colors]
+
+  end
+end
+# puts num_points_scored "Jason Terry"
+
+def team_names 
+  [game_hash[:home][:team_name], game_hash[:away][:team_name]]
+# def team
+end
+
+def player_numbers name
+  if name == "Brooklyn Nets"
+    players = game_hash[:home][:players]
+    return players.map {|player| player[:number]}
+  else 
+    players = game_hash[:away][:players]
+    return players.map {|player| player[:number]}
+  end
+end
+
+# p player_numbers "Hcsjnc"
